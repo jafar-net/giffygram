@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ben",
+      "dateJoined": "1630513631169",
+      "email": "bmosley1132@gmail.com"
+    },
+    {
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+      "id":1,
+      "userId":1,
+      "title": "Leaving Martin's Aquarium and Entering GiffyGram",
+      "imageURL": "https://media.giphy.com/media/zPOErRpLtHWbm/giphy.gif?cid=ecf05e47977vifp712fxlo6fjbf19t3srvuzxn9idduqui8o&rid=giphy.gif&ct=g"
+    },
+    {
+      "id":2,
+      "userId":1,
+      "title": "Watching other people present their group projects like",
+      "imageURL": "https://media.giphy.com/media/WiyczarN2XMm4/giphy.gif"
+    },
+    {
+      "id":3,
+      "userId":1,
+      "title": "When Brenda says everything is an object",
+      "imageURL": "https://media.giphy.com/media/xqjZLKH1iTBe0/giphy.gif"
+    }
+
+  ],
+  "messages": []
+}
