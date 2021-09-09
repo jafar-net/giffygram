@@ -1,4 +1,5 @@
-import { Post } from "./post.js";
+
+import { Post } from "./Post.js";
 
 export const PostList = (allPosts) => {
 	let postHTML = "";
@@ -10,4 +11,3 @@ export const PostList = (allPosts) => {
 		return postHTML;
 	
 }
-
