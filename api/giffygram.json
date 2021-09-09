@@ -12,24 +12,39 @@
   ],
   "posts": [
     {
-      "id":1,
-      "userId":1,
+      "id": 1,
+      "userId": 1,
       "title": "Leaving Martin's Aquarium and Entering GiffyGram",
       "imageURL": "https://media.giphy.com/media/zPOErRpLtHWbm/giphy.gif?cid=ecf05e47977vifp712fxlo6fjbf19t3srvuzxn9idduqui8o&rid=giphy.gif&ct=g"
     },
     {
-      "id":2,
-      "userId":1,
+      "id": 2,
+      "userId": 1,
       "title": "Watching other people present their group projects like",
       "imageURL": "https://media.giphy.com/media/WiyczarN2XMm4/giphy.gif"
     },
     {
-      "id":3,
-      "userId":1,
+      "id": 3,
+      "userId": 1,
       "title": "When Brenda says everything is an object",
       "imageURL": "https://media.giphy.com/media/xqjZLKH1iTBe0/giphy.gif"
+    },
+    {
+      "title": "",
+      "imageURL": "",
+      "description": "",
+      "userId": 1,
+      "timestamp": 1631200377075,
+      "id": 4
+    },
+    {
+      "title": "Welcome to GiffyGram",
+      "imageURL": "https://media.giphy.com/media/Xg9xtAwoxn3nEQEz4Y/giphy.gif",
+      "description": "",
+      "userId": 1,
+      "timestamp": 1631200658268,
+      "id": 5
     }
-
   ],
   "messages": []
 }
