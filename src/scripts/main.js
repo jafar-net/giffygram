@@ -1,10 +1,11 @@
-
-import { getPosts, getUsers, usePostCollection, createPost,deletePost, getSinglePost, updatePost, getLoggedInUser } from "./data/DataManager.js";
+import { getPosts, getUsers, usePostCollection, createPost,deletePost, getSinglePost, updatePost, getLoggedInUser, logoutUser, setLoggedInUser, loginUser, registerUser } from "./data/DataManager.js";
 import { PostList } from "./feed/PostList.js";
 import { NavBar } from "./nav/NavBar.js";
 import {footer} from "./footer.js"
 import {PostEntry} from "./feed/PostEntry.js"
 import {PostEdit} from "./feed/PostEdit.js"
+import {LoginForm} from "./auth/LoginForm.js"
+import {RegisterForm} from "./auth/RegisterForm.js"
  
 let yearSelected = 2021; //default
 
@@ -169,7 +170,59 @@ applicationElement.addEventListener("click", event => {
 	}
   })
   
+  applicationElement.addEventListener("click", event => {
+	if (event.target.id === "logout") {
+	  logoutUser();
+	  console.log(getLoggedInUser());
+	}
+  })
 
+
+  const checkForUser = () => {
+	if (sessionStorage.getItem("user")){
+		setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
+	  startGiffyGram();
+	}else {
+		 showLoginRegister();
+	}
+}
+
+const showLoginRegister = () => {
+	showNavBar();
+	const entryElement = document.querySelector(".entryForm");
+	//template strings can be used here too
+	entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+	//make sure the post list is cleared out too
+  const postElement = document.querySelector(".postList");
+  postElement.innerHTML = "";
+}
+
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "register__submit") {
+	  //collect all the details into an object
+	  const userObject = {
+		name: document.querySelector("input[name='registerName']").value,
+		email: document.querySelector("input[name='registerEmail']").value
+	  }
+	  registerUser(userObject)
+	  .then(dbUserObj => {
+		sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+		startGiffyGram();
+	  })
+	}
+  })
+  
+  applicationElement.addEventListener("click", event => {
+	if (event.target.id === "logout") {
+	  logoutUser();
+	  console.log(getLoggedInUser());
+	  sessionStorage.clear();
+	  checkForUser();
+	}
+  })
+  
+  
 
 const startGiffyGram = () => {
 	showNavBar();
@@ -178,4 +231,4 @@ const startGiffyGram = () => {
 	showFooter(yearSelected);
 }
 
-startGiffyGram();
+checkForUser();
