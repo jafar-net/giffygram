@@ -4,13 +4,13 @@ let loggedInUser = {
 	// email: "bmosley1132@gmail.com"
 }
 
-export const getLoggedInUser = () => {
-	return loggedInUser;
-}
-
 export const logoutUser = () => {
 	loggedInUser = {}
   }
+
+export const getLoggedInUser = () => {
+	return loggedInUser;
+}
 
 export const getUsers = () => {
 	return fetch("http://localhost:8088/users")
@@ -121,5 +121,22 @@ export const createPost = postObj => {
 		postCollection = parsedResponse
 		return parsedResponse;
 	  })
+  }
+  
+  export const postLike = likeObject => {
+	return fetch(`http://localhost:8088/userLikes/`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(likeObject)
+	})
+		.then(response => response.json())
+		.then(getPosts)
+}
+
+export const getLikes = (postId) => {
+	return fetch(`http://localhost:8088/userLikes?postId=${postId}`)
+	  .then(response => response.json())
   }
   
