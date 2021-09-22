@@ -29,6 +29,11 @@
       "name": "",
       "email": "",
       "id": 6
+    },
+    {
+      "name": "ben",
+      "email": "ben111",
+      "id": 7
     }
   ],
   "posts": [
@@ -49,5 +54,41 @@
       "id": 3
     }
   ],
-  "messages": []
+  "userLikes": [
+    {
+      "postId": "2",
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "postId": 3,
+      "userId": 7,
+      "id": 2
+    },
+    {
+      "postId": 2,
+      "userId": 7,
+      "id": 3
+    },
+    {
+      "postId": 2,
+      "userId": 2,
+      "id": 4
+    },
+    {
+      "postId": 3,
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "postId": 3,
+      "userId": 2,
+      "id": 6
+    },
+    {
+      "postId": 3,
+      "userId": 2,
+      "id": 7
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-import { getPosts, getUsers, usePostCollection, createPost,deletePost, getSinglePost, updatePost, getLoggedInUser, logoutUser, setLoggedInUser, loginUser, registerUser } from "./data/DataManager.js";
+import { getPosts, getUsers, usePostCollection, createPost,deletePost, getSinglePost, updatePost, getLoggedInUser, logoutUser, setLoggedInUser, loginUser, registerUser, postLike, getLikes } from "./data/DataManager.js";
 import { PostList } from "./feed/PostList.js";
 import { NavBar } from "./nav/NavBar.js";
 import {footer} from "./footer.js"
@@ -177,8 +177,7 @@ applicationElement.addEventListener("click", event => {
 	}
   })
 
-
-  const checkForUser = () => {
+const checkForUser = () => {
 	if (sessionStorage.getItem("user")){
 		setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
 	  startGiffyGram();
@@ -196,6 +195,28 @@ const showLoginRegister = () => {
   const postElement = document.querySelector(".postList");
   postElement.innerHTML = "";
 }
+
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "login__submit") {
+	  //collect all the details into an object
+	  const userObject = {
+		name: document.querySelector("input[name='name']").value,
+		email: document.querySelector("input[name='email']").value
+	  }
+	  loginUser(userObject)
+	  .then(dbUserObj => {
+		if(dbUserObj){
+		  sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+		  startGiffyGram();
+		}else {
+		  //got a false value - no user
+		  const entryElement = document.querySelector(".entryForm");
+		  entryElement.innerHTML = `<p class="center">That user does not exist. Please try again or register for your free account.</p> ${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+		}
+	  })
+	}
+  })  
 
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
@@ -222,7 +243,20 @@ applicationElement.addEventListener("click", event => {
 	}
   })
   
-  
+  applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("like")) {
+	  const likeObject = {
+		 postId: parseInt(event.target.id.split("__")[1]),
+		 userId: getLoggedInUser().id
+	  }
+	  postLike(likeObject)
+		.then(response => {
+		  showPostList();
+		})
+	}
+  })
+
 
 const startGiffyGram = () => {
 	showNavBar();
